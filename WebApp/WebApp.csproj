@@ -97,6 +97,17 @@
     <Content Include="data\queryOutput\operationCountSummary.csv" />
     <Content Include="data\tree.json" />
     <Content Include="data\2013Data.csv" />
+    <Content Include="data\USOpenR.csv" />
+    <Content Include="data\2003.json" />
+    <Content Include="data\2004.json" />
+    <Content Include="data\2005.json" />
+    <Content Include="data\2006.json" />
+    <Content Include="data\2007.json" />
+    <Content Include="data\2008.json" />
+    <Content Include="data\2009.json" />
+    <Content Include="data\2010.json" />
+    <Content Include="data\2011.json" />
+    <Content Include="data\2012.json" />
     <Content Include="data\2013.json" />
     <None Include="Properties\PublishProfiles\local publish.pubxml" />
     <None Include="Web.Debug.config">

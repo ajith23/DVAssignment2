@@ -17,14 +17,19 @@ namespace WebApp
             //    @"c:\users\avimalch\documents\visual studio 2015\Projects\AWAssignment1\WebApp\data\class_click_transformed.csv");
             //UtilityLocal.CleanTransformedFile(@"c:\users\avimalch\documents\visual studio 2015\Projects\AWAssignment1\WebApp\data\class_click_transformed.csv", @"c:\users\avimalch\documents\visual studio 2015\Projects\AWAssignment1\WebApp\data\class_click_transformed_cleaned.csv");
 
-            var flatNodes = FlatNode.ReadData(@"C:\Users\avimalch\DVAssignment2\WebApp\data\2013Data.csv");
-            Node.BuildNodes(null, flatNodes);
+            var dirPath = @"C:\Users\avimalch\DVAssignment2\WebApp\data";
+            for (var year = 2003; year <= 2013; year++)
+            {
+                var flatNodes = FlatNode.ReadData(dirPath + @"\USOpenR.csv");
+                Node.BuildNodes(null, flatNodes, year, year == 2005 ? 5 :7);
+                var json = new JavaScriptSerializer().Serialize(Node.Root);
+                //File.WriteAllText(dirPath+@"\"+year+".json", json);
 
-
-            var temp = Node.Root;
-            var json = new JavaScriptSerializer().Serialize(Node.Root);
-            Testdiv.InnerHtml = json;
-            //printData(temp);
+                Testdiv.InnerHtml = json;
+            }
+            
+            
+            //printData(Node.Root);
         }
 
         void printData(Node node)

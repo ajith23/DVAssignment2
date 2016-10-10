@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Script.Serialization;
 
 namespace WebApp
 {
@@ -16,27 +17,28 @@ namespace WebApp
         public int round { get; set; }
         public List<Node> children { get; set; }
 
-        MatchData match { get; set; }
+        public string matchD { get { return new JavaScriptSerializer().Serialize(Match); } }
+        MatchData Match { get; set; }
 
         public static Node Root { get; set; }
-        public static void BuildNodes(Node node, List<FlatNode> flatList)
+        public static void BuildNodes(Node node, List<FlatNode> flatList, int year, int maxRounds)
         {
             if (node == null) //root node
             {
-                var tempList = flatList.Where(n => n.Round == 7).ToList();
-                Root = new Node() { name = tempList[0].WinnerName, round = 8 };
+                var tempList = flatList.Where(n => n.Round == maxRounds && n.Year == year).ToList();
+                Root = new Node() { name = tempList[0].WinnerName, round = maxRounds+1 };
                 node = Root;
             }
             if (node.round == 1)
                 return;
-            var roundList = flatList.Where(n=>n.WinnerName == node.name && n.Round == node.round-1).ToList();
+            var roundList = flatList.Where(n=>n.WinnerName == node.name && n.Round == node.round-1 && n.Year== year).ToList();
             if (roundList.Count == 0)
                 return;
             node.children.Add(new Node() {name = roundList[0].WinnerName, round = roundList[0].Round });
             node.children.Add(new Node() {name = roundList[0].LoserName, round = roundList[0].Round });
-            node.match = roundList[0].Match;
-            BuildNodes(node.children[0], flatList);
-            BuildNodes(node.children[1], flatList);
+            node.Match = roundList[0].Match;
+            BuildNodes(node.children[0], flatList, year, maxRounds);
+            BuildNodes(node.children[1], flatList, year, maxRounds);
         }
     }
 
@@ -57,7 +59,8 @@ namespace WebApp
     {
         public string WinnerName { get; set; }
         public string LoserName { get; set; }
-
+        public int Year { get; set; }
+        public int Id { get; set; }
         public int Round { get; set; }
         public MatchData Match { get; set; }
 
@@ -76,6 +79,8 @@ namespace WebApp
                 var d = lines[i].Split(',');
                 var temp = new FlatNode
                 {
+                    Id = Convert.ToInt32(d[0]),
+                    Year = Convert.ToInt32(d[1]),
                     WinnerName = d[5],
                     LoserName = d[6],
                     Round = Convert.ToInt32(d[9]),
