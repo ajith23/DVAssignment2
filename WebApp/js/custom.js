@@ -4,7 +4,7 @@
         $(this).addClass('active').siblings().removeClass('active');
 
         // TODO: insert whatever you want to do with $(this) here
-        loadPlayersDropDown($(this).html());
+        loadmatchTree($(this).html());
     });
 
     d3.csv("data/queryOutput/userListForDropDown.csv", function (error, data) {
@@ -38,6 +38,16 @@
     generateUserClickCountReport();
     fetchOperationSummaryChartData();
 });
+
+function loadmatchTree(year) {
+    Modernizr.load({
+        test: Modernizr.svg,
+        yep: 'js/matchTree.js',
+        nope: ['js/jquery-1.9.1.min.js', 'js/fallback.js']
+    });
+}
+
+
 
 function loadPlayersDropDown(year)
 {

@@ -11,3 +11,17 @@ circle.leaf {
   fill-opacity: 1;
 }
 
+
+/* SVG styling */
+#roundTreesvg {
+	width: 700px;
+	height: 700px;
+	font-family: helvetica, sans-serif;
+}
+
+path, line {
+	fill: #225D23;
+	stroke: #eee;
+	stroke-width: 0.5px;
+	cursor: pointer;
+}
