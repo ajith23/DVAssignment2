@@ -9,6 +9,7 @@
         $(this).addClass('active').siblings().removeClass('active');
 
         $('#roundTreesvg').html('');
+        $('#matchData').html('');
         loadRoundTree($(this).html());
     });
 });

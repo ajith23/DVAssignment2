@@ -70,10 +70,6 @@
     <Content Include="js\matchTree.js" />
     <Content Include="js\modernizr.js" />
     <Content Include="packages.config" />
-    <Content Include="data\class_click.csv" />
-    <Content Include="data\class_operation.csv" />
-    <Content Include="data\class_query.csv" />
-    <Content Include="data\class_select.csv" />
     <Content Include="js\d3\LICENSE" />
     <Content Include="css\bootstrap-theme.css.map" />
     <Content Include="css\bootstrap-theme.min.css.map" />
@@ -83,18 +79,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="data\queryOutput\userListForDropDown.csv" />
-    <Content Include="data\queryOutput\intentionOverall.csv" />
-    <Content Include="data\queryOutput\intentionUserSpecific.csv" />
-    <Content Include="data\queryOutput\urlClickCountSummary.csv" />
-    <Content Include="data\queryOutput\userOperationWRTTime.csv" />
-    <Content Include="data\class_query_transformed.csv" />
-    <Content Include="data\queryOutput\urlOperationSummary.csv" />
-    <Content Include="data\queryOutput\intentionQuery.csv" />
-    <Content Include="data\queryOutput\userClickCountReport.csv" />
-    <Content Include="data\queryOutput\userSelectCountReport.csv" />
-    <Content Include="data\queryOutput\userOperationTimeline.csv" />
-    <Content Include="data\queryOutput\operationCountSummary.csv" />
     <Content Include="data\tree.json" />
     <Content Include="data\2013Data.csv" />
     <Content Include="data\USOpenR.csv" />
@@ -139,8 +123,6 @@
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\customstyle.css" />
     <Content Include="TestPage.aspx" />
-    <Content Include="usercontribution.html" />
-    <Content Include="useroperations.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

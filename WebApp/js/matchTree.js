@@ -75,11 +75,8 @@ function playerHover(d) {
           .style('fill', 'yellow');
     }
 
-    var m = d.match;
-    if (m !== undefined) {
-        d3.select('#result').text(fullname(d.children[0]) + ' beat ' + fullname(d.children[1]));
-        d3.select('#score').text(result(d));
-    }
+    d3.select('#result').text(fullname(d.children[0]) + ' beat ' + fullname(d.children[1]));
+        
 }
 
 function playerClick(d) {
@@ -101,33 +98,28 @@ function playerClick(d) {
           .style('fill', 'red');
     }
 
-    var m = d.match;
-    if (m !== undefined) {
-        d3.select('#result').text(fullname(d.children[0]) + ' <b>beat</b> ' + fullname(d.children[1]));
-        d3.select('#score').text(result(d));
+    if (d.matchD !== undefined) {
+        var xAxisArray = JSON.parse(d.matchD).XAxis;
+        var winnerArray = JSON.parse(d.matchD).WinnerData;
+        var loserArray = JSON.parse(d.matchD).LoserData;
+        for (var i = 0; i < xAxisArray.length; i++) {
+            xAxisArray[i] = xAxisArray[i].replace(/([A-Z])/g, ' $1').trim()
+        }
+        xAxisArray.splice(0, 0, "xA");
+        winnerArray.splice(0, 0, fullname(d.children[0]));
+        loserArray.splice(0, 0, fullname(d.children[1]));
+        var chartData = [
+                xAxisArray,
+                winnerArray,
+                loserArray
+        ];
+        /*var chartData = [
+                ['xA', 'test', 'test2', 'test3'],
+                [fullname(d.children[0]), 30, 200, 100],
+                [fullname(d.children[1]), 130, 100, 140]
+        ];*/
+        loadMatchData(chartData, fullname(d.children[0]), fullname(d.children[1]));
     }
-
-   
-    var xAxisArray = JSON.parse(d.matchD).XAxis;
-    var winnerArray = JSON.parse(d.matchD).WinnerData;
-    var loserArray = JSON.parse(d.matchD).LoserData;
-    for (var i = 0; i < xAxisArray.length; i++) {
-        xAxisArray[i] = xAxisArray[i].replace(/([A-Z])/g, ' $1').trim()
-    }
-    xAxisArray.splice(0, 0, "xA");
-    winnerArray.splice(0, 0, fullname(d.children[0]));
-    loserArray.splice(0, 0, fullname(d.children[1]));
-    var chartData = [
-            xAxisArray,
-            winnerArray,
-            loserArray
-    ];
-    /*var chartData = [
-            ['xA', 'test', 'test2', 'test3'],
-            [fullname(d.children[0]), 30, 200, 100],
-            [fullname(d.children[1]), 130, 100, 140]
-    ];*/
-    loadMatchData(chartData, fullname(d.children[0]), fullname(d.children[1]));
 }
 
 function loadMatchData(matchData, winner, loser) {
