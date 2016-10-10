@@ -1,4 +1,4 @@
-﻿var radius = 350, numRounds = 7, segmentWidth = radius / (numRounds + 1);
+﻿var radius = 300, numRounds = 7, segmentWidth = radius / (numRounds + 1);
 
 var partition = d3.layout.partition()
   .sort(null)
@@ -107,20 +107,19 @@ function playerClick(d) {
     }
 
     var chartData = [
-            [['x', 'test', 'test2', 'test3'], ],
+            ['xA', 'test', 'test2', 'test3'],
             [fullname(d.children[0]), 30, 200, 100],
             [fullname(d.children[1]), 130, 100, 140]
     ];
     loadMatchData(chartData, fullname(d.children[0]), fullname(d.children[1]));
 }
 
-
-
 function loadMatchData(matchData, winner, loser) {
+    var xData = ['xA', 'test', 'test2', 'test3'];
     var chart1 = c3.generate({
         bindto: '#matchData',
         data: {
-            //x: 'x',
+            x: 'xA',
             columns: matchData,
             type: 'bar',
             onclick: function (d, i) {
@@ -135,7 +134,7 @@ function loadMatchData(matchData, winner, loser) {
             }
         },
         legend: {
-            position: 'bottom'
+            position: 'top'
         },
         axis: { x: { type: 'category', show: true } },
         labels: true,
@@ -156,14 +155,13 @@ function loadMatchData(matchData, winner, loser) {
         }
     });
 
-    d3.select("#matchData svg").append("text")
+    /*d3.select("#matchData svg").append("text")
     .attr("x", 150)
     .attr("y", 10)
     .style("text-anchor", "middle")
-    .text(winner + ' beats ' + loser);
-
+    .text(winner + ' beats ' + loser);*/
+    d3.select('#matchDataresult').text(winner + ' beats ' + loser);
 }
-
 
 var xCenter = radius, yCenter = radius;
 var svg = d3.select('#roundTreesvg').append('g').attr('transform', translateSVG(xCenter, yCenter));
@@ -182,8 +180,8 @@ d3.json('data/tree.json', function (err, root) {
     chart.selectAll('g')
       .append('path')
       .attr('d', arc)
-      .on('mouseover', playerHover)
-      .on('click',playerClick);
+      .on('click',playerClick)
+      .on('mouseover', playerHover);
 
     // Round labels
     var rounds = ['Round 1', 'Round 2', 'Round 3', 'Round 4', 'Quarter finals', 'Semi finals', 'Final'];

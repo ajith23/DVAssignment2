@@ -12,6 +12,10 @@ circle.leaf {
 }
 
 
+.c3-legend-item{
+  font-size: 20px;
+}
+
 /* SVG styling */
 #roundTreesvg {
 	width: 700px;
@@ -20,7 +24,7 @@ circle.leaf {
 }
 
 path, line {
-	fill: #225D23;
+	fill: rgba(31, 119, 180, 0.7); /*#225D23;*/
 	stroke: #eee;
 	stroke-width: 0.5px;
 	cursor: pointer;

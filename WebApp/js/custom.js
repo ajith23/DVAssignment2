@@ -33,7 +33,6 @@
     fetchSelectedUserIntentionChartData('A0001');
     fetchUserOperationTimeSeriesData('A0001');
     loadContribution('A0001');
-    fetchUrlClickCountScatterChartData();
     //generateBubbleChart();
     generateUserClickCountReport();
     fetchOperationSummaryChartData();
@@ -46,8 +45,6 @@ function loadmatchTree(year) {
         nope: ['js/jquery-1.9.1.min.js', 'js/fallback.js']
     });
 }
-
-
 
 function loadPlayersDropDown(year)
 {
@@ -132,13 +129,6 @@ function generateAllUserIntentionChart(chartData) {
         legend: {
             position: 'right'
         }
-        //pie: {
-        //    label: {
-        //        format: function (value, ratio, id) {
-        //            return id + ":" + ratio;
-        //        }
-        //    }
-        //}
     });
 }
 
@@ -160,13 +150,6 @@ function generateSelectedUserIntentionChart(chartData) {
         legend: {
             position: 'right'
         }
-        //pie: {
-        //    label: {
-        //        format: function (value, ratio, id) {
-        //            return id + ":" + ratio;
-        //        }
-        //    }
-        //}
     });
 
     chart2.load({

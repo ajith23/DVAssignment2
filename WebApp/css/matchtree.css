@@ -5,17 +5,17 @@
   margin-left: 60px;
 }
 
-text {
+#roundTreesvg text {
 	/*fill: white;*/
 	font-size: 11px;
 	text-anchor: middle;
-	font-weight: 800;
+	/*font-weight: 800;*/
 	cursor: pointer;
 }
 
 #round-labels text {
 	font-size: 20px;
-	fill: #597459;
+	fill: #1a97ad /*#597459;*/
 }
 
 /*#result {
