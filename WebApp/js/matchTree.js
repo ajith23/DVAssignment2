@@ -166,7 +166,7 @@ function loadMatchData(matchData, winner, loser) {
 var xCenter = radius, yCenter = radius;
 var svg = d3.select('#roundTreesvg').append('g').attr('transform', translateSVG(xCenter, yCenter));
 
-d3.json('data/tree.json', function (err, root) {
+d3.json('data/2013.json', function (err, root) {
     // console.log(root);
     var chart = svg.append('g');
     chart.datum(root).selectAll('g')
