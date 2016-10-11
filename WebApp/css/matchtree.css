@@ -18,22 +18,14 @@
 	fill: #1a97ad /*#597459;*/
 }
 
-/*#result {
-  position: absolute;
-  left: 680px;
-  top: 20px;
-  width: 400px;
+#result {
   font-size: 18px;
-  font-weight: 200;
-}*/
+  font-weight: 600;
+}
 
-#score {
-  position: absolute;
-  left: 680px;
-  top: 40px;
-  width: 400px;
-  font-size: 30px;
-  font-weight: 500;
+#matchDataresult {
+  font-size: 18px;
+  font-weight: 600;
 }
 
 #title {

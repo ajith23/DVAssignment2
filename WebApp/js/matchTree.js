@@ -35,6 +35,7 @@ var label = function (d) {
 }
 
 function surname(d) {
+    //return d.name.replace(' ', '-');
     return d.name.split(' ')[0];
 }
 
@@ -113,12 +114,20 @@ function playerClick(d) {
                 winnerArray,
                 loserArray
         ];
-        /*var chartData = [
-                ['xA', 'test', 'test2', 'test3'],
-                [fullname(d.children[0]), 30, 200, 100],
-                [fullname(d.children[1]), 130, 100, 140]
-        ];*/
+       
         loadMatchData(chartData, fullname(d.children[0]), fullname(d.children[1]));
+    }
+
+    if (d.donutD !== undefined) {
+        var donut = JSON.parse(d.donutD);
+        var aceData = [[fullname(d.children[0]), donut.Ace1], [fullname(d.children[1]), donut.Ace2]];
+        var totalData = [[fullname(d.children[0]), donut.TotalPoints1], [fullname(d.children[1]), donut.TotalPoints2]];
+        var winnerData = [[fullname(d.children[0]), donut.Winner1], [fullname(d.children[1]), donut.Winner2]];
+        var errorData = [[fullname(d.children[0]), donut.Error1], [fullname(d.children[1]), donut.Error2]];
+        loadDonutChart('aceChart', aceData, 'Ace');
+        loadDonutChart('totalPointChart', totalData, 'Total Points');
+        loadDonutChart('winnerChart', winnerData, 'Winner');
+        loadDonutChart('errorChart', errorData, 'Error');
     }
 }
 
@@ -162,12 +171,6 @@ function loadMatchData(matchData, winner, loser) {
             }
         }
     });
-
-    /*d3.select("#matchData svg").append("text")
-    .attr("x", 150)
-    .attr("y", 10)
-    .style("text-anchor", "middle")
-    .text(winner + ' beats ' + loser);*/
     d3.select('#matchDataresult').text(winner + ' beats ' + loser);
 }
 
@@ -227,11 +230,34 @@ function loadRoundTree(year)
         playerLabels.datum(root).selectAll('g')
           .data(partition.nodes)
           .enter()
-          .append('text')
+          .append('text').on('click', playerClick)
           .text(function (d, i) { return i === 0 ? surname(d) : d.name.slice(0, 3); })
           .attr('transform', label)
           .attr('dy', '0.4em')
           .attr('class', function (d) { return surname(d) + ' round-' + +(d.round); });
 
+    });
+}
+
+function loadDonutChart(target, data, title)
+{
+    var chart = c3.generate({
+        bindto: '#' + target,
+        data: {
+            columns: data,
+            type: 'donut',
+            onclick: function (d, i) { console.log("onclick", d, i); },
+            //onmouseover: function (d, i) { console.log("onmouseover", d, i); },
+            //onmouseout: function (d, i) { console.log("onmouseout", d, i); }
+        },
+        donut: {
+            title: title,
+            label: { show: false }
+        },
+        legend: { show: false },
+        color: { pattern: ["#5F3A81", "#56AEC7", "#F09348", "#A196A9"] },
+        size: {
+            height: 200
+        }
     });
 }

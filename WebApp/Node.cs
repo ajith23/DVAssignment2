@@ -19,7 +19,8 @@ namespace WebApp
 
         public string matchD { get { return new JavaScriptSerializer().Serialize(Match); } }
         MatchData Match { get; set; }
-
+        DonutData Donut { get; set; }
+        public string donutD { get { return new JavaScriptSerializer().Serialize(Donut); } }
         public static Node Root { get; set; }
         public static void BuildNodes(Node node, List<FlatNode> flatList, int year, int maxRounds)
         {
@@ -37,6 +38,7 @@ namespace WebApp
             node.children.Add(new Node() {name = roundList[0].WinnerName, round = roundList[0].Round });
             node.children.Add(new Node() {name = roundList[0].LoserName, round = roundList[0].Round });
             node.Match = roundList[0].Match;
+            node.Donut = roundList[0].Donut;
             BuildNodes(node.children[0], flatList, year, maxRounds);
             BuildNodes(node.children[1], flatList, year, maxRounds);
         }
@@ -55,6 +57,29 @@ namespace WebApp
 
     }
 
+    public class DonutData
+    {
+        public DonutData(int a1, int a2, int t1, int t2, int w1, int w2, int e1, int e2)
+        {
+            Ace1 = a1;
+            Ace2 = a2;
+            TotalPoints1 = t1;
+            TotalPoints2 = t2;
+            Winner1 = w1;
+            Winner2 = w2;
+            Error1 = e1;
+            Error2 = e2;
+        }
+        public int Ace1 { get; set; }
+        public int Ace2 { get; set; }
+        public int TotalPoints1 { get; set; }
+        public int TotalPoints2 { get; set; }
+        public int Winner1 { get; set; }
+        public int Winner2 { get; set; }
+        public int Error1 { get; set; }
+        public int Error2 { get; set; }
+    }
+
     public class FlatNode
     {
         public string WinnerName { get; set; }
@@ -63,7 +88,7 @@ namespace WebApp
         public int Id { get; set; }
         public int Round { get; set; }
         public MatchData Match { get; set; }
-
+        public DonutData Donut { get; set; }
         /*0-id,1-year,2-gender,3-tid,4-mid,5-player1,6-player2,7-country1,8-country2,9-round,
          10- firstServe1,11 -firstServe2,12- ace1, 13- ace2, 14- double1, 15- double2, 16- firstPointWon1, 17- firstPointWon2,
          18- secPointWon1, 19-secPointWon2, 20-fastServe1, 21-fastServe2, 22-avgFirstServe1, 23-avgFirstServe2, 24-avgSecServe1, 25-avgSecServe2,
@@ -86,7 +111,9 @@ namespace WebApp
                     Round = Convert.ToInt32(d[9]),
                     Match = new MatchData(
                             Array.ConvertAll(new string[] { "0" + d[10].Trim('%'), "0" + d[16].Trim('%'), "0" + d[18].Trim('%'), "0" + d[26].Trim('%'), "0" + d[28].Trim('%'), "0" + d[36].Trim('%') }, int.Parse),
-                            Array.ConvertAll(new string[] { "0" + d[11].Trim('%'), "0" + d[17].Trim('%'), "0" + d[19].Trim('%'), "0" + d[27].Trim('%'), "0" + d[29].Trim('%'), "0" + d[37].Trim('%') }, int.Parse))
+                            Array.ConvertAll(new string[] { "0" + d[11].Trim('%'), "0" + d[17].Trim('%'), "0" + d[19].Trim('%'), "0" + d[27].Trim('%'), "0" + d[29].Trim('%'), "0" + d[37].Trim('%') }, int.Parse)),
+                    Donut = new DonutData(Convert.ToInt32("0" + d[12]), Convert.ToInt32("0" + d[13]), Convert.ToInt32("0" + d[30]), Convert.ToInt32("0" + d[31]),
+                                          Convert.ToInt32("0" + d[32]), Convert.ToInt32("0" + d[33]), Convert.ToInt32("0" + d[34]), Convert.ToInt32("0" + d[35]))
                 };
 
                 result.Add(temp);

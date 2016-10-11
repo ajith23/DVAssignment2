@@ -9,6 +9,12 @@
         $(this).addClass('active').siblings().removeClass('active');
 
         $('#roundTreesvg').html('');
+        $('#result').html('');
+        $('#matchDataresult').html('');
+        $('#aceChart').html('');
+        $('#totalPointChart').html('');
+        $('#winnerChart').html('');
+        $('#errorChart').html('');
         $('#matchData').html('');
         loadRoundTree($(this).html());
     });
