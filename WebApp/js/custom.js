@@ -1,4 +1,5 @@
 ﻿$(document).ready(function () {
+    $('#loadingDiv').hide();
     Modernizr.load({
         test: Modernizr.svg,
         yep: 'js/matchTree.js',
@@ -6,6 +7,7 @@
     });
 
     $('#yearSelector button').click(function () {
+        $('#loadingDiv').show();
         $(this).addClass('active').siblings().removeClass('active');
 
         $('#roundTreesvg').html('');

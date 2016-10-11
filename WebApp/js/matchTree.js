@@ -235,7 +235,7 @@ function loadRoundTree(year)
           .attr('transform', label)
           .attr('dy', '0.4em')
           .attr('class', function (d) { return surname(d) + ' round-' + +(d.round); });
-
+        $('#loadingDiv').hide();
     });
 }
 
