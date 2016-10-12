@@ -30,10 +30,68 @@
     </nav>
     <div class="jumbotron">
         <div class="container">
-
+            <br />
+            <br />
+            <br />
             <div class="row">
+                This visualization is an attempt to capture all details of 10 years of US open from 2003 to 2013.
+                It visualizes every game from 2003 to 2013, highlighting the factors that helped a player win or lose the game.
+                It also visualizes the journey of a player right from the start of the series to the final game.
+                <br />
+                <br />
+                <h4>The Charts</h4>
+                <ul>
+                    <li>
+                        A <b>Round Tree Chart</b> is used to represent the knockout games for each round. Every layer in the tree represent a round. The outer most layer is Round 1, next layer is Round 2, and so forth, With the center representing the Winner of the series. Each layer also has a watermark label with the round name on it.
+                    </li>
+                    <li>
+                        Match Details -
+                        <ul>
+                            <li>
+                                <b>Donut charts</b> are used to represent statistics like Aces, Total Points, Winner and Error. This helps the viewer to easily identify the strengths and weaknesses of the player during that game.
+                                It also helps to compare the winner and the loser of the game with each other.
+                            </li>
+                            <li>
+                                A <b>Column Chart</b> is used for stats like First Serve, First Point Won, Second POint Won, Break, Return and Net. This data is represented as percentages. Hence the visualization not only helps the comparison between the winner and loser for a given skill, but also helps to know what skill contributed to the total points of the player for a game. 
+                            </li>
+                        </ul>
+                </ul>
+              
+                <h4>The Interaction</h4>
+                <ul>
+                    <li>
+                        <b>Hover over</b> any of the node in the Round Tree Knockout chart, to see the name of the winner and the loser of the game. As a Visual feed back the text on the node changes Yellow while hovering.
+                    </li>
+                    <li>
+                        <b>Click</b> on any node, except the nodes on the outer most layer (as they are just the name of the players and not a match), to see the Match details. The Match details appear on the <b>Right </b> or <b> Bottom</b> depending on the screen width.
+                    </li>
+                    <li>
+                        <b>Hover over</b> the donut charts to see more details about the data it is representing.
+                    </li>
+                    <li>
+                        <b>Hover over</b> the column charts to see more details about the data it is representing.
+                    </li>
+                    <li>
+                        <b>Click</b> on the legend to hide/show the data of that player.
+                    </li>
+                </ul>
+
+                <h4>The Colors </h4> 
+                <ul>
+                    <li>
+                        US Open games take place in Hard Surface courts. The colour of the <b>Round Tree Knockout Chart</b> is the color of the hard surface.
+                    </li>
+                    <li>
+                        For every game, the winner is represented using a darker color than the color used to represent the loser. This makes the winner data more prominent in the chart.
+
+                    </li>
+                </ul>
+
+                <h6>PS: The round tree knockout chart for 2005, 2006 and 2007 has missing data.</h6>
+            </div>
+            <div class="row" style="text-align:right">
                 <h5>Submitted by : <b>Ajith</b> Vimalchand (1208654846)</h5>
-                
+
             </div>
         </div>
     </div>
